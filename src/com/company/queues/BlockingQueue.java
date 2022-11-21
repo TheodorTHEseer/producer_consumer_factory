@@ -7,10 +7,6 @@ public class BlockingQueue {
     private int capacity;
     private int size=0;
 
-    public int getSize() {
-        return size;
-    }
-
     public BlockingQueue(int capacity){
         this.capacity=capacity;
     }
@@ -30,11 +26,15 @@ public class BlockingQueue {
 
     public void put(String text){
         Node node = last;
-        last =new Node(text);
+        last=new Node(text);
         last.next=null;
-        if (isEmpty()) first = last;
+        if (isEmpty()) first=last;
         else
-            node.next= last;
+            node.next=last;
         size++;
+
+        if (size>capacity)
+            take();
+
     }
 }

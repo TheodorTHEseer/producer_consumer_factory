@@ -1,19 +1,32 @@
 package com.company;
 
+import com.company.objects.Consumer;
+import com.company.objects.Producer;
 import com.company.queues.BlockingQueue;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main {
 
-    public static void main(String[] args) {
+    Executor executor;
 
-        BlockingQueue blockingQueue = new BlockingQueue(10);
-        for(int i=1; i<12;i++){
-            blockingQueue.put(String.valueOf(i));
-        }
+    public static void main(String[] args) throws InterruptedException {
 
-        System.out.println("size: "+ blockingQueue.getSize());
-        for(int i=1; i<10;i++){
-            System.out.println(blockingQueue.take());
-        }
+        final int N_CUPs=Runtime.getRuntime().availableProcessors();
+        final int buffer_capacity=10;
+        final int delay= 250;
+
+        System.out.println("available Processors: "+N_CUPs);
+
+        ExecutorService executorServiceP = Executors.newCachedThreadPool();
+        ExecutorService executorServiceC = Executors.newCachedThreadPool();
+
+        BlockingQueue blockingQueue = new BlockingQueue(buffer_capacity);
+
+        executorServiceP.execute(new Producer(blockingQueue));
+        executorServiceC.execute(new Consumer(buffer_capacity,blockingQueue,delay));
+
     }
 }
