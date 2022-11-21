@@ -10,7 +10,8 @@ public class Main {
         for(int i=1; i<12;i++){
             blockingQueue.put(String.valueOf(i));
         }
-        System.out.println("size: "+blockingQueue.getSize());
+
+        System.out.println("size: "+ blockingQueue.getSize());
         for(int i=1; i<10;i++){
             System.out.println(blockingQueue.take());
         }

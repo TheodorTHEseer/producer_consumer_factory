@@ -2,45 +2,39 @@ package com.company.queues;
 
 public class BlockingQueue {
 
-    private Node head;
-    private Node tail;
+    private Node first;
+    private Node last;
     private int capacity;
+    private int size=0;
+
+    public int getSize() {
+        return size;
+    }
 
     public BlockingQueue(int capacity){
         this.capacity=capacity;
     }
 
-    public int getSize(){
-        int size=0;
-        Node n = head;
-        while (n!=null){
-            n=n.next;
-            size++;
-        }
-        return size;
+    private boolean isEmpty(){
+        return first ==null;
     }
 
     public String take(){
-        head=head.next;
-        return head.getText();
+        String text = first.getText();
+        first=first.next;
+        if(isEmpty())
+            last=null;
+        size--;
+        return text;
     }
 
-
     public void put(String text){
-        Node node = new Node(text);
-        if(getSize()!=capacity){//до заполнения буфера
-            node.next=head;
-            head=node;
-        }
-
-        if(getSize()==capacity){
-            tail=head;
-            node.next=head;
-        }
-
-//
-//        if(getSize()==capacity){
-//            tail=head;
-//        }
+        Node node = last;
+        last =new Node(text);
+        last.next=null;
+        if (isEmpty()) first = last;
+        else
+            node.next= last;
+        size++;
     }
 }
