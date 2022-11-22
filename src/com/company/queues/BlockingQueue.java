@@ -4,14 +4,24 @@ public class BlockingQueue {
 
     private Node first;
     private Node last;
+
+    public int getCapacity() {
+        return capacity;
+    }
+
     private int capacity;
+
+    public int getSize() {
+        return size;
+    }
+
     private int size=0;
 
     public BlockingQueue(int capacity){
         this.capacity=capacity;
     }
 
-    private boolean isEmpty(){
+    public boolean isEmpty(){
         return first ==null;
     }
 

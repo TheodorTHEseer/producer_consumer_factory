@@ -2,7 +2,7 @@ package com.company.queues;
 
 public class Node {
 
-    private String text;
+    private final String text;
     protected Node next;
 
     public Node(String text) {

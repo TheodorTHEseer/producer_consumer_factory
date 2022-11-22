@@ -18,12 +18,11 @@ public class Producer implements Runnable{
     public void run() {
         System.out.println(Thread.currentThread().getName()+" RUN NOW!!!");
         int cap=random.nextInt(25);
-        for (int i=0; i<cap;i++){
+        for (int i=0;i<cap;i++){
             synchronized (blockingQueue){
                 System.out.println(Thread.currentThread().getName()+" Writing now!");
-               blockingQueue.put(Thread.currentThread().getName()+": "+ i);
+                blockingQueue.put(Thread.currentThread().getName()+": "+ i);
            }
-           Thread.interrupted();
         }
     }
 }
