@@ -22,7 +22,7 @@ public class Consumer implements Runnable{
             e.printStackTrace();
         }
 
-        System.out.println(Thread.currentThread().getName()+" RUN NOW!!!");
+        System.out.println(Thread.currentThread().getName()+" RUNING NOW!!!");
 
        for(int i=0;i<bufferCapacity;i++){
             synchronized (blockingQueue){

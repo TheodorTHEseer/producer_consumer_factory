@@ -1,9 +1,13 @@
 package com.company.queues;
 
+import java.nio.file.FileAlreadyExistsException;
+
 public class BlockingQueue {
 
     private Node first;
     private Node last;
+
+    private boolean block=false;
 
     public int getCapacity() {
         return capacity;
@@ -35,6 +39,7 @@ public class BlockingQueue {
     }
 
     public void put(String text){
+        block=true;
         Node node = last;
         last=new Node(text);
         last.next=null;
@@ -45,6 +50,6 @@ public class BlockingQueue {
 
         if (size>capacity)
             take();
-
+        block=false;
     }
 }

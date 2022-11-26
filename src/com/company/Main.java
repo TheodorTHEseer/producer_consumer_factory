@@ -17,11 +17,12 @@ public class Main {
 
         System.out.println("Available Processors: "+N_CUPs);
 
-        ExecutorService executorService = Executors.newCachedThreadPool();
+        ExecutorService executorServiceC = Executors.newCachedThreadPool();
+        ExecutorService executorServiceP = Executors.newCachedThreadPool();
 
         BlockingQueue blockingQueue = new BlockingQueue(buffer_capacity);
 
-        executorService.execute(new Producer(blockingQueue));
-        executorService.execute(new Consumer(buffer_capacity,blockingQueue,delay));
+        executorServiceC.execute(new Producer(blockingQueue));
+        executorServiceP.execute(new Consumer(buffer_capacity,blockingQueue,delay));
     }
 }

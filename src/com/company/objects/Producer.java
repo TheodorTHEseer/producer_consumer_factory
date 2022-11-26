@@ -16,7 +16,7 @@ public class Producer implements Runnable{
 
     @Override
     public void run() {
-        System.out.println(Thread.currentThread().getName()+" RUN NOW!!!");
+        System.out.println(Thread.currentThread().getName()+" RUNING NOW!!!");
         int cap=random.nextInt(25);
         for (int i=0;i<cap;i++){
             synchronized (blockingQueue){
