@@ -3,7 +3,7 @@ package com.company.users;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-import static com.company.Constants.SERVER_SOCKET;
+import static com.company.consts.Constants.SERVER_SOCKET;
 
 public class Server {
 
